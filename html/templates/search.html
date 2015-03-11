@@ -1,0 +1,79 @@
+<ion-view view-title="Search Customers">
+  <ion-content>
+    <div class="list  list-inset">
+       		 <label class="item item-input item-select">
+				<i class="icon ion-search placeholder-icon"></i>
+				<input type="text" ng-model="search[filter]" placeholder="Search By - {{searchCondition.label}}"  >   
+			
+				<select  ng-options="v.label for v in searchOptions" ng-model="myOption" ng-change="changeSearchType(myOption);" >							
+				</select>
+			
+					
+		  </label>
+		  <div ng-show="showSearchDone(search);">		    
+			  <table>
+				<tr ng-repeat="(key,value) in search">
+					<td>{{getLabel(key)}}</td><td>:</td><td>{{value}}</td>
+                 <tr>
+				 			    <tr><td><button class="button button-calm" ng-click="search={'customerName':''}" ng-show="showSearchDone(search);" >Cancel Search</button></td></tr>
+			  </table>
+		  </div>
+    </div>
+ 
+
+
+     
+    
+    <div class="list card" ng-repeat="customer in searchedCustomers |orderByPriority | filter:search" href="#/app/playlists/{{playlist.id}}">
+	
+	  <div class="item item-avatar">	    
+	    <h2>{{customer.customerName}}</h2>	    
+	    <p>{{customer.customerNumber}}</p>
+	  </div>
+	
+	  <div class="item item-body">	   
+	    <p>
+	      <span class="input-label">Company Name</span>  <span class="badge badge-assertive">{{customer.companyName}}</span>
+	    </p> 
+	    <p>
+	      <label class="item item-input item-stacked-label">
+    <span class="input-label">First Name</span>
+    <input type="text" placeholder="John">
+  </label>
+	    </p>
+	    <p>
+	     <h3>Total Owed : {{customer.totalOwed}}</h3>
+	    </p>
+		<p>
+	     <h3>Total Disputed : {{customer.totalDisputed}}</h3>
+	    </p>	    
+		<p>
+	     <h3>Portfolio : {{customer.Portfolio}}</h3>
+	    </p>
+	    		     
+	    
+	    <p>
+	      <a href="#" class="subdued">1 Like</a>
+	      <a href="#" class="subdued">5 Comments</a>
+	    </p>
+	  </div>
+	
+	  <div class="item tabs tabs-secondary tabs-icon-left">
+	    <a class="tab-item" href="#">
+	      <i class="icon ion-eye"></i>
+	      Favorite Customer
+	    </a>
+	    <a class="tab-item" href="#">
+	      <i class="icon ion-chatbox"></i>
+	      Comment
+	    </a>
+
+	  </div>
+	
+	</div>
+    
+   
+ 
+    
+  </ion-content>
+</ion-view>

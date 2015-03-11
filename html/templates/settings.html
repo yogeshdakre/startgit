@@ -1,0 +1,24 @@
+<ion-view view-title="{{'Browse'|translate}}">
+  <ion-content>	
+<form name="settingsForm" novalidate class="css-form" ng-submit="saveServerURL(settings)">
+<div class="list">
+  <label class="item item-input">
+    <span class="input-label">{{'Select Language'|translate}}</span>
+	<select ng-options="v.label for v in languageOptions" ng-model="selectedLanguage" ng-change="changeLanguage(selectedLanguage);" ></select>
+  </label>
+  <label class="item item-input">
+    <span class="input-label">{{'Server URL'|translate}}</span>
+    <input type="url" ng-model="settings.url" name="serverUrl" placeholder="http://yourServerAddress" required>
+  </label>
+</div>
+<div class="row responsive-sm" ng-show="settingsForm.$submitted || settingsForm.serverUrl.$touched">
+  <div class="col"><span ng-show="settingsForm.serverUrl.$error.required">{{'Tell us your Server URL.'|translate}}</span></div>
+  <div class="col"><span ng-show="settingsForm.serverUrl.$error.url">{{'This is not a valid URL..'|translate}}</span></div>
+</div>
+
+<button type="submit" class="button button-block button-positive" ng-disabled="settingsForm.$invalid">
+  {{'Save Settings'|translate}}
+</button>
+ </form>
+  </ion-content>
+</ion-view>
